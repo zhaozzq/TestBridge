@@ -57,7 +57,10 @@
         ready(function () {
             AlipayJSBridge.call('setOptionMenu', {
                 // 显示的时候是从后往前显示的
-                menus: [],
+                menus: [{
+                    icontype: 'scanxxxx',
+                    redDot: '-1', // -1 表示不显示，0 表示显示红点，1-99 表示在红点上显示的数字
+                }],
                 override: true //在需要设置多个 option 的情况下，是否保留默认的 optionMenu
             });
             // 必须强制调用一把刷新界面
@@ -66,148 +69,7 @@
                 alert(JSON.stringify(e.data));
             }, false);
         });
-        /*
-        new Vue({
-            el: '#Items',
-            data: {
-                urls: [
-                    {
-                        name: '我要培训',
-                        url: 'http://xue.haier.net/mlms/myTrain/index.html#/myTrain?loginId=HR13C000337'
-                    },
-                    {
-                        name: '课程',
-                        url: 'http://xue.haier.net/mlms/myCourse/index.html#/myCourse?loginId=HR13C000337'
-                    },
-                    {
-                        name: '考试',
-                        url: 'http://xue.haier.net/mlms/myExam/index.html#/myExam?loginId=HR13C000337'
-                    },
-                    {
-                        name: '成熟人才 A0',
-                        url: 'http://xue.haier.net/mlms/matureStaff/index.html#/matureList?loginId=A0016295'
-                    },
-                    {
-                        name: '成熟人才 HR',
-                        url: 'http://xue.haier.net/mlms/matureStaff/index.html#/matureList?loginId=HR39C200930'
-                    },
-                    {
-                        name: '智慧成套',
-                        url: 'http://xue.haier.net/mlms/Course/index.html#/courseCategoryNew?loginId=HR13C000337&isCenterClick=true&rule_id=001012013'
-                    },
-                    {
-                        name: '课程资源',
-                        url: 'http://xue.haier.net/mlms/Course/index.html#/courseCenter?loginId=HR13C000337&rule_id=&isCenterClick=true'
-                    },
-                    {
-                        name: '彩电（培训平台）',
-                        url: 'http://xue.haier.net/mlms/Course/index.html#/courseCategoryNew?loginId=HR13C000337&isCenterClick=true&rule_id=001012006'
-                    },
-                    {
-                        name: '洗涤（培训平台）',
-                        url: 'http://xue.haier.net/mlms/Course/index.html#/courseCategoryNew?loginId=HR13C000337&isCenterClick=true&rule_id=001012002'
-                    },
-                    {
-                        name: '家空（培训平台）',
-                        url: 'http://xue.haier.net/mlms/Course/index.html#/courseCategoryNew?loginId=HR13C000337&isCenterClick=true&rule_id=001012003'
-                    },
-                    {
-                        name: '商空（培训平台）',
-                        url: 'http://xue.haier.net/mlms/Course/index.html#/courseCategoryNew?loginId=HR13C000337&isCenterClick=true&rule_id=001012008'
-                    },
-                    {
-                        name: '备件平台（培训平台）',
-                        url: 'http://xue.haier.net/mlms/Course/index.html#/courseCategoryNew?loginId=HR13C000337&isCenterClick=true&rule_id=001012010'
-                    },
-                    {
-                        name: '净水（培训平台）',
-                        url: 'http://xue.haier.net/mlms/Course/index.html#/courseCategoryNew?loginId=HR13C000337&isCenterClick=true&rule_id=001012011'
-                    },
-                    {
-                        name: '生活家电（培训平台）',
-                        url: 'http://xue.haier.net/mlms/Course/index.html#/courseCategoryNew?loginId=HR13C000337&isCenterClick=true&rule_id=001012007'
-                    },
-                    {
-                        name: '家空（培训平台）',
-                        url: 'http://xue.haier.net/mlms/Course/index.html#/courseCategoryNew?loginId=HR13C000337&isCenterClick=true&rule_id=001012003'
-                    },
-                    {
-                        name: '电热（培训平台）',
-                        url: 'http://xue.haier.net/mlms/Course/index.html#/courseCategoryNew?loginId=HR13C000337&isCenterClick=true&rule_id=001012004'
-                    },
-                    {
-                        name: '厨电（培训平台）',
-                        url: 'http://xue.haier.net/mlms/Course/index.html#/courseCategoryNew?loginId=HR13C000337&isCenterClick=true&rule_id=001012005'
-                    },
-                    {
-                        name: '制冷（培训平台）',
-                        url: 'http://xue.haier.net/mlms/Course/index.html#/courseCategoryNew?loginId=HR13C000337&isCenterClick=true&rule_id=001012001'
-                    },
-                    {
-                        name: '我的考试（考试中心）',
-                        url: 'http://xue.haier.net/mlms/myExam/index.html#/myExam?loginId=HR13C000337'
-                    },
-                    {
-                        name: '工艺库制冷产业',
-                        url: 'http://xue.haier.net/mlms/CraftsLibrary/index.html#/courseResource?loginId=HR13C000337&rule_id=001012001&rule_name=ZL'
-                    },
-                    {
-                        name: '工艺库洗涤产业',
-                        url: 'http://xue.haier.net/mlms/CraftsLibrary/index.html#/courseResource?loginId=HR13C000337&rule_id=001012002&rule_name=XD'
-                    },
-                    {
-                        name: '工艺库家空产业',
-                        url: 'http://xue.haier.net/mlms/CraftsLibrary/index.html#/courseResource?loginId=HR13C000337&rule_id=001012003&rule_name=JYKT'
-                    },
-                    {
-                        name: '工艺库电热产业',
-                        url: 'http://xue.haier.net/mlms/CraftsLibrary/index.html#/courseResource?loginId=HR13C000337&rule_id=001012004&rule_name=DR'
-                    },
-                    {
-                        name: '工艺库厨电产业',
-                        url: 'http://xue.haier.net/mlms/CraftsLibrary/index.html#/courseResource?loginId=HR13C000337&rule_id=001012005&rule_name=CD'
-                    },
-                    {
-                        name: '工艺库彩电产业',
-                        url: 'http://xue.haier.net/mlms/CraftsLibrary/index.html#/courseResource?loginId=HR13C000337&rule_id=001012006&rule_name=CAD'
-                    },
-                    {
-                        name: '故障代码 冰箱',
-                        url: 'http://123.103.113.86/phone/jsp/breakdown/detail.jsp?cate_code=FridgeFault&goheader=t'
-                    },
-                    {
-                        name: '故障代码 冷柜',
-                        url: 'http://123.103.113.86/phone/jsp/breakdown/detail.jsp?cate_code=FreezerFault&goheader=t'
-                    },
-                    {
-                        name: '故障代码 洗涤',
-                        url: 'http://123.103.113.86/phone/jsp/breakdown/detail.jsp?cate_code=WashingMachineFault&goheader=t'
-                    },
-                    {
-                        name: '故障代码 加空',
-                        url: 'http://123.103.113.86/phone/jsp/breakdown/detail.jsp?cate_code=AirConditionerFault&goheader=t'
-                    },
-                    {
-                        name: '故障代码 电热',
-                        url: 'http://123.103.113.86/phone/jsp/breakdown/detail.jsp?cate_code=WaterHeaterFault&goheader=t'
-                    },
-                    {
-                        name: '故障代码 厨电',
-                        url: 'http://123.103.113.86/phone/jsp/breakdown/detail.jsp?cate_code=ElectricKitchenFault&goheader=t'
-                    },
-                    {
-                        name: '更多',
-                        url: 'http://actwb.haier.net/microblog/filesvr/5b7a87b2ed501c3099ef7331'
-                    }
-                ]
-            },
-            methods: {
-                open(url, title) {
-                    pushWindow(url, title)
-                }
-            }
-        })
-        */
+        
         function pushWindow(url, title) {
             if (isIOS()) {
                 window.webkit.messageHandlers.pushWindow.postMessage({
