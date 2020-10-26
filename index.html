@@ -76,6 +76,26 @@
             // });
         });
 
+        new Vue({
+            el: '#Items',
+            data: {
+                urls: [
+                    {
+                        name: 'baidu.com',
+                        url: 'https://baidu.com'
+                    },
+                    {
+                        name: "蚂蚁",
+                        url: 'https://tech.antfin.com/'
+                    }
+                ]
+            },
+            methods: {
+                open(url, title) {
+                    pushWindow(url, title)
+                }
+            }
+        })
         function pushWindow(url, title) {
             AlipayJSBridge.call('pushWindow', {
                 url: url, // 要打开页面的 URL
