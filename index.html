@@ -58,9 +58,15 @@
             AlipayJSBridge.call('setOptionMenu', {
                 // 显示的时候是从后往前显示的
                 menus: [{
-                    icontype: 'scanxxxx',
+                    title: '0',
                     redDot: '-1', // -1 表示不显示，0 表示显示红点，1-99 表示在红点上显示的数字
-                }],
+                    color: '#ffff8a65', // 必须以＃开始 ARGB 颜色值
+                }, 
+                // {
+                //     icontype: 'scan',
+                //     redDot: '-1', // -1 表示不显示，0 表示显示红点，1-99 表示在红点上显示的数字
+                // }
+                ],
                 override: true //在需要设置多个 option 的情况下，是否保留默认的 optionMenu
             });
             // 必须强制调用一把刷新界面
@@ -69,7 +75,7 @@
                 alert(JSON.stringify(e.data));
             }, false);
         });
-        
+
         function pushWindow(url, title) {
             if (isIOS()) {
                 window.webkit.messageHandlers.pushWindow.postMessage({
