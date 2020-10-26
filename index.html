@@ -57,13 +57,7 @@
         ready(function () {
             AlipayJSBridge.call('setOptionMenu', {
                 // 显示的时候是从后往前显示的
-                menus: [{
-                    icontype: 'scan',
-                    redDot: '-1', // -1 表示不显示，0 表示显示红点，1-99 表示在红点上显示的数字
-                }, {
-                    icontype: 'user',
-                    redDot: '10', // -1 表示不显示，0 表示显示红点，1-99 表示在红点上显示的数字
-                }],
+                menus: [],
                 override: true //在需要设置多个 option 的情况下，是否保留默认的 optionMenu
             });
             // 必须强制调用一把刷新界面
