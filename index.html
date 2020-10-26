@@ -70,17 +70,31 @@
                 alert(JSON.stringify(e.data));
             }, false);
         });
-        
+
         function pushWindow(url, title) {
-            if (isIOS()) {
-                window.webkit.messageHandlers.pushWindow.postMessage({
-                    "url": url,
-                    "title": title
-                });
-            } else {
-                //window.location.href = url;
-                ms.pushWindow(document.querySelector("textarea").value, title)
-            }
+            AlipayJSBridge.call('pushWindow', {
+                url: url, // 要打开页面的 URL
+                // 打开页面的配置参数
+                param: {
+                    readTitle: true,    //自动读取 title
+                    showOptionMenu: false    // 隐藏右边菜单
+                },
+                // 用于给新开的页面传递参数，可选
+                // 在新开的页面使用 AlipayJSBridge.startupParams 可以获取到 passData
+                passData: {
+                    key1: "key1Value",
+                    key2: "key2Value"
+                }
+            });
+            // if (isIOS()) {
+            //     window.webkit.messageHandlers.pushWindow.postMessage({
+            //         "url": url,
+            //         "title": title
+            //     });
+            // } else {
+            //     //window.location.href = url;
+            //     ms.pushWindow(document.querySelector("textarea").value, title)
+            // }
         }
         function openTestPage() {
             let url = document.querySelector("input").value;
