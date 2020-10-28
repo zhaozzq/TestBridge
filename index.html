@@ -39,6 +39,12 @@
                             @click="open(item.url,item.name)">{{item.name}}</button>
                     </div>
                 </div>
+                <div class="layui-row layui-col-space10">
+                    <div class="layui-col-xs6" v-for="item in urls">
+                        <button type="button" class="layui-btn layui-btn-fluid layui-bg-blue"
+                            @click="openTiny(item.id,item.name)">{{item.name}}</button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -88,11 +94,35 @@
                         name: "蚂蚁",
                         url: 'https://tech.antfin.com/'
                     }
+                ],
+                tinys: [
+                    {
+                        name: "mPaaS官方小程序示例",
+                        id: "2020102100000000"
+                    }
                 ]
             },
             methods: {
                 open(url, title) {
                     pushWindow(url, title)
+                },
+                openTiny(id, title) {
+                    ready(function () {
+                        AlipayJSBridge.call('startApp', {
+                            appId: id,
+                            // param: {
+                            //   url: '/index.html',
+                            //   appClearTop: false,
+                            //   startMultApp: 'YES' // 注意这个值是 YES，而不是 bool 类型
+                            // }
+                        }, function (result) {
+                            // noop
+                            layui.use('layer', function () {
+                                var layer = layui.layer;
+                                layer.msg(JSON.stringify(result));
+                            });
+                        });
+                    })
                 }
             }
         })
