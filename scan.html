@@ -89,7 +89,7 @@
                             window.imakerapi.call("scanQRCode",{},function (result) {
                                   layui.use('layer', function () {
                                     var layer = layui.layer;
-                                    layer.msg(JSON.stringify) 
+                                    layer.msg(JSON.stringify(result)) 
                                 });
                             });
                         }
