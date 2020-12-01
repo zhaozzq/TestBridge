@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>测试</title>
+    <link rel="stylesheet" href="https://www.layuicdn.com/layui-v2.5.6/css/layui.css">
+</head>
+<style>
+    .container {
+        padding: 20px;
+        padding-top: 40px;
+    }
+
+    #Items {
+        padding-top: 30px;
+    }
+
+    .container-btn {
+        padding: 20px;
+    }
+</style>
+
+<body>
+    <div class="container">
+        <div class="input-block">
+            <input type="text" name="title" required lay-verify="required" placeholder="输入测试链接" autocomplete="off"
+                class="layui-input">
+            <div class="container-btn">
+                <button type="button" class="layui-btn layui-btn-fluid layui-bg-blue"
+                    onclick="openTestPage()">Go</button>
+            </div>
+            <hr />
+            <div id="Items">
+                <div class="layui-row layui-col-space10">
+                    <div class="layui-col-xs6" v-for="item in urls">
+                        <button type="button" class="layui-btn layui-btn-fluid layui-bg-blue"
+                            @click="open(item.url,item.name)">{{item.name}}</button>
+                    </div>
+                </div>
+                <div class="layui-row layui-col-space10">
+                    <div class="layui-col-xs6" v-for="item in tinys">
+                        <button type="button" class="layui-btn layui-btn-fluid layui-bg-blue"
+                            @click="openTiny(item.id,item.name)">{{item.name}}</button>
+                    </div>
+                </div>
+                <div class="layui-row layui-col-space10">
+                    <div class="layui-col-xs6" v-for="item in tests">
+                        <button type="button" class="layui-btn layui-btn-fluid layui-bg-blue"
+                            @click="execute(item.method)">{{item.name}}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://www.layuicdn.com/layui-v2.5.6/layui.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="./imaker.js"></script>
+    <script>
+        new Vue({
+            el: '#Items',
+            data: {
+                urls: [
+                    {
+                        name: 'baidu.com',
+                        url: 'https://baidu.com'
+                    },
+                    {
+                        name: "蚂蚁",
+                        url: 'https://tech.antfin.com/'
+                    }
+                ],
+                tinys: [
+                    {
+                        name: "mPaaS官方小程序示例",
+                        id: "2020102100000000"
+                    },
+                    {
+                        name: "测试小程序",
+                        id: "2020102014150001"
+                    }
+                ],
+                tests: [
+                    {
+                        name: "扫一扫",
+                        method: function () {
+                            console.log("扫一扫")
+                            window.imakerapi.call("scanQRCode",{},function (result) {
+                                  layui.use('layer', function () {
+                                    var layer = layui.layer;
+                                    layer.msg(JSON.stringify) 
+                                });
+                            });
+                        }
+                    },
+                    {
+                        name: "关闭",
+                        method: function () {
+                            console.log("关闭")
+                            window.imakerapi.closeWindow();
+                        }
+                    },
+                ],
+            },
+            methods: {
+                open(url, title) {
+                    window.imakerapi.pushWindow(url, title);
+                },
+
+                openTiny(url, title) {
+
+                },
+                execute(method) {
+                    method();
+                }
+            }
+        })
+        function openTestPage() {
+            let url = document.querySelector("input").value;
+            if (url) {
+                window.imakerapi.pushWindow(url, "test");
+            } else {
+                layui.use('layer', function () {
+                    var layer = layui.layer;
+                    layer.msg('请输入测试链接');
+                });
+            }
+        }
+        function isIOS() {
+            return /iPhone|iPad|iPod/.test(navigator.userAgent)
+        }
+    </script>
+</body>
+
+</html>
