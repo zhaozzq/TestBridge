@@ -45,13 +45,13 @@
       callbacks[callbackId] = callback;
 
     if (getOS() == 'ios') {
-      window.webkit.messageHandlers.pushWindow.postMessage({
+      window.webkit.messageHandlers.callAppMessageHandler.postMessage({
         "function": functionName,
         "callbackId": callbackId,
         "message": message// message 必须有值，没有传空对象{}
       });
     } else if (getOS == 'android') {
-      imaker.pushWindow(functionName, message, callbackId); //android 需实现imaker
+      imaker.callAppMessageHandler(functionName, message, callbackId); //android 需实现imaker
     }
   }
 
