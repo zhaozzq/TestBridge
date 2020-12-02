@@ -58,6 +58,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
     <script src="./imaker.js"></script>
     <script>
+        console.log('userAgent: ' + navigator.userAgent)
         new Vue({
             el: '#Items',
             data: {
@@ -99,6 +100,14 @@
                         method: function () {
                             console.log("关闭")
                             window.imakerapi.closeWindow();
+                        }
+                    },
+                    {
+                        name: "测试",
+                        method: function () {
+                            window.imakerapi.call("scanQRCode", undefined,function (result) {
+                                  
+                            });
                         }
                     },
                 ],
