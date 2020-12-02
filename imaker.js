@@ -77,6 +77,10 @@
   }
 
   function _closeWindow() {
+    if (isNebula()) {
+      AlipayJSBridge.call("popWindow");
+      return;
+    }
     _call("closeWindow",{});
   }
 
