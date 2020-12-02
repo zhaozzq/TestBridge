@@ -87,7 +87,7 @@
                         name: "扫一扫",
                         method: function () {
                             console.log("扫一扫")
-                            window.imakerapi.call("scanQRCode",{},function (result) {
+                            window.imakerapi.scanQRCode(function (result) {
                                   layui.use('layer', function () {
                                     var layer = layui.layer;
                                     layer.msg(JSON.stringify(result)) 
@@ -105,7 +105,7 @@
                     {
                         name: "测试",
                         method: function () {
-                            window.imakerapi.call("scanQRCode", undefined,function (result) {
+                            window.imakerapi.call("scan", undefined,function (result) {
                                   
                             });
                         }
