@@ -103,11 +103,18 @@
                         }
                     },
                     {
-                        name: "测试",
+                        name: "测试公告",
                         method: function () {
-                            window.imakerapi.call("scan", undefined,function (result) {
-                                  
-                            });
+                            AlipayJSBridge.call(
+                                "openKingdeeH5",
+                                {
+                                    url: "http://xue.haier.net/mlms/app/index.html", // 要打开页面的 URL
+                                    showTitleBar: true,
+                                },
+                                (data) => {
+                                    console.log(JSON.stringify(data));
+                                }
+                            );
                         }
                     },
                 ],
