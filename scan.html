@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>测试</title>
     <link rel="stylesheet" href="https://www.layuicdn.com/layui-v2.5.6/css/layui.css">
+    <script src="https://actwb.haier.net/res/js/qingjs.js">
 </head>
 <style>
     .container {
@@ -87,12 +88,18 @@
                         name: "扫一扫",
                         method: function () {
                             console.log("扫一扫")
-                            window.imakerapi.scanQRCode(function (result) {
-                                  layui.use('layer', function () {
+                            XuntongJSBridge.call("scanQRCode",{},function (result){
+                                layui.use('layer', function () {
                                     var layer = layui.layer;
                                     layer.msg(JSON.stringify(result)) 
-                                });
-                            });
+                                })
+                            })
+                            // window.imakerapi.scanQRCode(function (result) {
+                            //       layui.use('layer', function () {
+                            //         var layer = layui.layer;
+                            //         layer.msg(JSON.stringify(result)) 
+                            //     });
+                            // });
                         }
                     },
                     {
