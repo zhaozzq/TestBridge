@@ -90,10 +90,12 @@
                         method: function () {
                             console.log("扫一扫")
                             XuntongJSBridge.call("scanQRCode",{},function (result){
-                                layui.use('layer', function () {
-                                    var layer = layui.layer;
-                                    layer.msg(JSON.stringify(result)) 
-                                })
+                                console.log(JSON.stringify(result))
+                                window.alert(JSON.stringify(result))
+//                                 layui.use('layer', function () {
+//                                     var layer = layui.layer;
+//                                     layer.msg(JSON.stringify(result)) 
+//                                 })
                             })
                             // window.imakerapi.scanQRCode(function (result) {
                             //       layui.use('layer', function () {
